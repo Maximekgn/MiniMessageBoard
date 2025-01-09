@@ -15,8 +15,12 @@ const messages = [
 ];
 
 // Route pour la page d'accueil
-router.get('/', (req, res) => {
-  res.render('index', { title: "Mini Messageboard", messages: messages });
+router.get('/', (req, res, next) => {
+  try {
+    res.render('index', { title: "Mini Messageboard", messages: messages });
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Route pour le formulaire de nouveau message
